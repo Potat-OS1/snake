@@ -2,6 +2,7 @@ package snake.problems.demo;
 
 import javafx.animation.AnimationTimer;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -82,8 +83,15 @@ public class AnimateSomething extends AnimationTimer {
         }
         for (Rectangle seg : segments){
             String id = seg.getId();
-            if (head.getBoundsInParent().intersects(seg.getBoundsInParent()) && !id.contains("don't count")){
+            Shape intersection = Shape.intersect(head, seg);
+            if (intersection.getBoundsInLocal().getHeight() != -1 && !id.contains("don't count")){
                 timer.stop();
+                end.setVisible(true);
+                finalScore.setText(Integer.toString(size));
+                score.setText("1");
+                size = 1;
+                head.setLayoutX(0);
+                head.setLayoutY(0);
             }
         }
     }
