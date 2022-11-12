@@ -46,6 +46,7 @@ public class AnimateSomething extends AnimationTimer {
                     head.setLayoutX(head.getLayoutX() - speed);
                 }
             }
+            segments();
             detect();
         }
     }
@@ -61,7 +62,6 @@ public class AnimateSomething extends AnimationTimer {
             segX.remove(0);
             segY.remove(0);
         }
-        segments();
     }
 
     private void segments(){
