@@ -16,7 +16,7 @@ public class AnimateSomething extends AnimationTimer {
 
     @Override
     public void handle(long now){
-        int speed = 20;
+        int speed = (int) head.getHeight();
         if(now - lastUpdate >= 55_000_000){
             lastUpdate = now;
             updateScore();

@@ -34,6 +34,7 @@ public class StartSnake extends Application {
     Color body;
     float increment = 0.1f;
     boolean startbool = false;
+    double decider;
 
     @Override
     public void start(Stage stage){
@@ -88,9 +89,11 @@ public class StartSnake extends Application {
         //putting it together
         Region spacing = new Region();
         Region spacing2 = new Region();
+        Region spacing3 = new Region();
         VBox.setVgrow(spacing, Priority.ALWAYS);
         VBox.setVgrow(spacing2, Priority.ALWAYS);
-        VBox vbox = new VBox(introText, subText, spacing, start, spacing2);
+        VBox.setVgrow(spacing3, Priority.ALWAYS);
+        VBox vbox = new VBox(spacing3, introText, subText, spacing, start, spacing2);
         vbox.setPadding(new Insets(10, 10, 10, 10));
         vbox.setAlignment(Pos.CENTER);
         intro.getChildren().add(vbox);
@@ -171,10 +174,29 @@ public class StartSnake extends Application {
     }
 
     public void foodLocation(Node food){
+        changeFood((Rectangle) food);
         int foodX = (int) (Math.random() * 580);
         int foodY = (int) (Math.random() * 580);
         food.setLayoutX(foodX);
         food.setLayoutY(foodY);
+    }
+
+    private void changeFood(Rectangle noms){
+        decider = Math.random();
+        if (decider < .5){
+            double sizeC = (Math.random() * (20 - 10)) + 10;
+            noms.setHeight(sizeC);
+            noms.setWidth(sizeC);
+            noms.setFill(Color.RED);
+        }
+        if (decider >= .5){
+            size++;
+            Grow();
+            double sizeC = (Math.random() * (30 - 20)) + 20;
+            noms.setHeight(sizeC);
+            noms.setWidth(sizeC);
+            noms.setFill(Color.BLUE);
+        }
     }
 
     public static void main(String[] args) {
